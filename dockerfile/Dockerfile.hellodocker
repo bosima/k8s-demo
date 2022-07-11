@@ -1,0 +1,8 @@
+FROM alpine
+
+COPY ./hellodocker /usr/local/
+
+RUN cd /usr/local/ \
+    && chmod +x ./hellodocker
+
+CMD /usr/local/hellodocker

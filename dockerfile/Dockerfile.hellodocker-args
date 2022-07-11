@@ -1,0 +1,11 @@
+FROM alpine
+
+ARG greetname
+ENV greetname=${greetname} 
+
+COPY ./hellodocker-args /usr/local/
+
+RUN cd /usr/local/ \
+    && chmod +x ./hellodocker-args
+
+CMD /usr/local/hellodocker-args ${greetname:-docker}

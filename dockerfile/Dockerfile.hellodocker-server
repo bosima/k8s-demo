@@ -1,0 +1,14 @@
+FROM alpine
+
+ARG port
+ENV port=${port:-80} 
+
+COPY ./hellodocker-server /usr/local/
+
+RUN mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2 \
+    && cd /usr/local/ \
+    && chmod +x ./hellodocker-server
+
+CMD /usr/local/hellodocker-server ${port}
+
+EXPOSE ${port}
